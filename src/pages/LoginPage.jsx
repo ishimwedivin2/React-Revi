@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import Header from "./Header";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -20,7 +21,9 @@ const LoginPage = () => {
   };
 
   return (
+    
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
+      <Header/>
       <h2 className="text-2xl font-bold mb-4">Login</h2>
       <form onSubmit={handleLogin} className="w-80 bg-white p-6 shadow-md rounded">
         <input
