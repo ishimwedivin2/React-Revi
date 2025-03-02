@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const LoginPage = () => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
   const handleLogin = (e) => {
     e.preventDefault();
 
-    // Trim email input to avoid accidental spaces
-    const trimmedEmail = email.trim();
+    // Trim username input to avoid accidental spaces
+    const trimmedUsername = username.trim();
 
-    if (trimmedEmail === "admin@example.com") {
+    if (trimmedUsername === "admin") {
       navigate("/admin");
     } else {
       navigate("/user");
@@ -24,18 +24,18 @@ const LoginPage = () => {
       <h2 className="text-2xl font-bold mb-4">Login</h2>
       <form onSubmit={handleLogin} className="w-80 bg-white p-6 shadow-md rounded">
         <input
-          type="email"
-          placeholder="Email"
+          type="text"
+          placeholder="Username"
           className="w-full p-2 mb-3 border"
-          value={email} // Added controlled value
-          onChange={(e) => setEmail(e.target.value)}
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           required
         />
         <input
           type="password"
           placeholder="Password"
           className="w-full p-2 mb-3 border"
-          value={password} // Added controlled value
+          value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
@@ -43,6 +43,12 @@ const LoginPage = () => {
           Login
         </button>
       </form>
+      <p className="mt-4">
+        Don't have an account?{" "}
+        <Link to="/signup" className="text-blue-500 hover:underline">
+          Sign up here
+        </Link>
+      </p>
     </div>
   );
 };

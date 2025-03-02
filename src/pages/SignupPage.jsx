@@ -1,16 +1,51 @@
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+
 const SignupPage = () => {
-    return (
-      <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-        <h2 className="text-2xl font-bold mb-4">Sign Up</h2>
-        <form className="w-80 bg-white p-6 shadow-md rounded">
-          <input type="text" placeholder="Username" className="w-full p-2 mb-3 border" />
-          <input type="email" placeholder="Email" className="w-full p-2 mb-3 border" />
-          <input type="password" placeholder="Password" className="w-full p-2 mb-3 border" />
-          <button type="submit" className="w-full p-2 bg-green-500 text-white">Sign Up</button>
-        </form>
-      </div>
-    );
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const response = await fetch("http://localhost:5000/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+      alert("Signup successful!");
+    } else {
+      alert(data.message);
+    }
   };
-  
-  export default SignupPage;
-  
+
+  return (
+    <div>
+      <h2>Signup</h2>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <button type="submit">Sign Up</button>
+      </form>
+      <p>
+        Already have an account? <Link to="/login">Login here</Link>
+      </p>
+    </div>
+  );
+};
+
+export default SignupPage;
