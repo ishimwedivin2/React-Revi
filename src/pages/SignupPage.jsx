@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Header from "./Header";
+import Footer from "./Footer";
+
 
 const SignupPage = () => {
   const [username, setUsername] = useState("");
@@ -23,6 +26,7 @@ const SignupPage = () => {
 
   return (
     <div>
+      <Header/>
       <h2>Signup</h2>
       <form onSubmit={handleSubmit}>
         <input
@@ -44,6 +48,7 @@ const SignupPage = () => {
       <p>
         Already have an account? <Link to="/login">Login here</Link>
       </p>
+      <Footer/>
     </div>
   );
 };
