@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Header from "./Header";
+import Footer from "./Footer";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
@@ -52,6 +53,7 @@ const LoginPage = () => {
           Sign up here
         </Link>
       </p>
+      <Footer/>
     </div>
   );
 };
