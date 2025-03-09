@@ -5,15 +5,15 @@ import Footer from "./Footer";
 
 
 const SignupPage = () => {
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch("http://localhost:5000/signup", {
+    const response = await fetch("http://localhost:8080/auth/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ username, password }),
+      body: JSON.stringify({ email, password }),
     });
 
     const data = await response.json();
@@ -32,8 +32,8 @@ const SignupPage = () => {
         <input
           type="text"
           placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
           required
         />
         <input
